@@ -1,7 +1,35 @@
 aid: incandor
 name: Incandor
-description: Incandor is a company surfaced as a portfolio company of y-combinator and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Incandor is a San Francisco based Y Combinator (Spring 2026) startup building
+  behavioral intelligence infrastructure for fraud and abuse detection. Rather
+  than relying on identity verification at account creation, Incandor constructs
+  a behavioral map of every user on a platform from how they physically interact
+  with an app or website — mouse dynamics, keystroke timing, scroll patterns, and
+  on mobile how a device is held. It requires no fraud labels and no enrollment
+  period, working from the first session. At the individual level it identifies
+  account takeovers with greater than 99 percent accuracy; at the population level
+  it separates out coordinated fraud rings, mule operators, shared operators, bots
+  and agents, and coerced or duress sessions. Incandor is delivered as a
+  programmable API and a client-side telemetry SDK rather than a black-box risk
+  score, letting fraud teams combine behavioral signals with their own transaction
+  history, customer records, and business rules. It collects only behavioral
+  signals — not what users type, read, or view — keeping user data private by
+  design. The company was founded by Matthew Yekell (CEO) and Luc Rosenzweig (CTO),
+  both Stanford CS graduates. This profile is maintained by the API Evangelist
+  network; the developer platform is currently early access.
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://www.incandor.com/logo.png
 url: https://raw.githubusercontent.com/api-evangelist/incandor/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,14 +37,41 @@ x-backed-by:
 - y-combinator
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-founders:
+- FN: Matthew Yekell
+  role: CEO
+- FN: Luc Rosenzweig
+  role: CTO
+x-yc-batch: Spring 2026
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
+- Fraud Prevention
+- Anti-Fraud
+- Behavioral Biometrics
+- Account Takeover
+- Security
+- Fintech
+- Machine Learning
 apis: []
+common:
+- type: DomainSecurity
+  url: security/incandor-domain-security.yml
+- type: Website
+  url: https://www.incandor.com
+- type: GitHubOrganization
+  url: https://github.com/incandor
+- type: Support
+  url: mailto:info@incandor.com
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
