@@ -43,7 +43,7 @@ x-founders:
 - FN: Luc Rosenzweig
   role: CTO
 x-yc-batch: Spring 2026
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
 tags:
