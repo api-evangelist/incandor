@@ -16,10 +16,18 @@ deployment:
 tools_count: 3
 tools:
 - name: analyze_accounts
-  description: ''
+  description: Score accounts for evidence that more than one person is using them, and return the accounts
+    they are behaviourally linked to.  Each account's sessions are clustered into 'cores' -- groups that
+    look like a single person. Per account you get
 - name: top_shared_accounts
-  description: ''
+  description: 'List your platform''s accounts with the highest sharedness, most shared first.  Reads
+    a live leaderboard: no GPU cost. An account appears only once it has been scored by analyze_accounts
+    at least once, so this reflects what has been analysed'
 - name: top_linked_accounts
-  description: ''
+  description: 'List the strongest behavioural links between pairs of accounts on your platform, strongest
+    first. Useful for finding rings of accounts driven by one person.  Same live leaderboard as top_shared_accounts:
+    no GPU cost, and it only covers acco'
 tools_source: live tools/list via initialize handshake, 2026-09-12 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
