@@ -60,12 +60,11 @@ modified: '2026-07-19'
 tags:
 - Company
 - Fraud Prevention
-- Anti-Fraud
 - Behavioral Biometrics
 - Account Takeover
 - Security
 - Fintech
-- Machine-Learning
+- Machine Learning
 tags_raw:
 - Company
 - Fraud Prevention
@@ -75,6 +74,7 @@ tags_raw:
 - Security
 - Fintech
 - Machine Learning
+- Machine-Learning
 apis: []
 common:
 - type: DomainSecurity
