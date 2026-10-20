@@ -1,0 +1,70 @@
+{
+  "endpoint": "https://mcp.incandor.com/mcp",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "incandor-sdb",
+    "version": "1.0.0"
+  },
+  "result": {
+    "tools": [
+      {
+        "name": "analyze_accounts",
+        "description": "Score accounts for evidence that more than one person is using them, and return the accounts they are behaviourally linked to.\n\nEach account's sessions are clustered into 'cores' -- groups that look like a single person. Per account you get:\n  p_shared        0..1, probability the account is used by several people\n  verdict         'single' (p<0.5), 'review' (p<0.938), 'shared' (p>=0.938)\n  session_groups  one array of session ids per person found\n  links           up to 5 other accounts on the same platform whose behaviour matches, each with a 0..1 score\n\nEvery account costs a GPU draw, so pass them all in one call rather than looping one at a time.\n\nTo analyse ONE person inside a shared account, pass that person's ids from a previous session_groups result as session_ids (with exactly one account_id). The parent account is then excluded from that person's links, so what comes back is who that individual is linked to elsewhere.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "account_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Account hashes to score. Batch them; do not loop."
+            },
+            "session_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Optional. 32-char hex session ids selecting one person inside the account. Requires exactly one account_id."
+            },
+            "include_coassignment": {
+              "type": "boolean",
+              "description": "Also return the full N x N session co-assignment matrix. Grows with the square of the session count -- only ask for it on small accounts."
+            }
+          },
+          "required": [
+            "account_ids"
+          ]
+        }
+      },
+      {
+        "name": "top_shared_accounts",
+        "description": "List your platform's accounts with the highest sharedness, most shared first.\n\nReads a live leaderboard: no GPU cost. An account appears only once it has been scored by analyze_accounts at least once, so this reflects what has been analysed so far, not the whole platform.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "n": {
+              "type": "integer",
+              "description": "How many to return (default 50, max 1000)."
+            }
+          }
+        }
+      },
+      {
+        "name": "top_linked_accounts",
+        "description": "List the strongest behavioural links between pairs of accounts on your platform, strongest first. Useful for finding rings of accounts driven by one person.\n\nSame live leaderboard as top_shared_accounts: no GPU cost, and it only covers accounts that have already been analysed.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "n": {
+              "type": "integer",
+              "description": "How many to return (default 50, max 1000)."
+            }
+          }
+        }
+      }
+    ]
+  }
+}
